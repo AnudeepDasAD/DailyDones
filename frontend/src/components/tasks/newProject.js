@@ -32,23 +32,14 @@ export class NewProject extends Component {
 
     handleSubmit = (e)  => {
         e.preventDefault(); //Prevents form submission by pressing enter
-        //console.log(this.state);
-        /*
-        if (this.state.editProj && this.state.newProjectName === "") {
-            this.setState({
-                newProjectName: this.state.projectName
-            });
-        }
-        if (this.state.editProj && this.state.newProjectDesc === "") {
-            this.setState({
-                newProjectDesc: this.state.projectDesc
-            });
-        }
-        */
+        
         console.log('state is: ', this.state);
         this.props.createProject(this.state).then((data) => {
             //return <Redirect to='/'/>
             document.getElementById("newProj").reset();
+            if (data) {
+                alert(data.msg);
+            }
             this.setState({
                 author: this.props.name.slice(-1)[0].username,
                 projectName: '',
